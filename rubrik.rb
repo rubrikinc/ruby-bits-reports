@@ -269,19 +269,19 @@ if Options.envision then
           end
         mail.delivery_method :sendmail
 	mail.deliver
-        else
-          begin
-            IO.write("reports/#{s}-#{date}.html",html)
-          rescue
-            puts "Couldn't write file reports/#{s}-#{date}.html"
-          end
+        end
+        begin
+          IO.write("reports/#{s}-#{date}.html",html)
+        rescue
+          puts "Couldn't write file reports/#{s}-#{date}.html"
         end
       end
-    begin
-      File.write("data/"+s, dataset.to_json)
-    rescue
-      puts "Could not write data cache 'data/#{s}'"
-    end 
+      begin
+        File.write("data/"+s, dataset.to_json)
+      rescue
+        puts "Could not write data cache 'data/#{s}'"
+      end 
+    end
   end
 end
 

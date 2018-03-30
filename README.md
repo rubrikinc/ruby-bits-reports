@@ -26,7 +26,8 @@ Specific options:
 Report options:
     -r, --envision [string]          Return Requested Envision Report Table Data
         --html                       Format as HTML if possible
-        --email                      Send to [string] if possible
+        --to                         Send to email
+        --from                       Send from email
 
 Common options:
     -n, --node [Address]             Rubrik Cluster Address/FQDN
