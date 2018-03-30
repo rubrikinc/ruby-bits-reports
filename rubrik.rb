@@ -260,8 +260,8 @@ if Options.envision then
           begin 
             require 'mail'
             Mail.deliver do
-              from    fromEmail 
-  	      to      toEmail 
+              from    "#{fromEmail}" 
+  	      to      "#{toEmail}" 
               subject 'Test report'
  #  	      html_part do
  #   	        content_type 'text/html; charset=UTF-8'
