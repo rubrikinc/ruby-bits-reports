@@ -267,8 +267,12 @@ if Options.envision then
     	      body html
   	    end
           end
-        mail.delivery_method :sendmail
-	mail.deliver
+          begin 
+            mail.delivery_method :sendmail
+	    mail.deliver
+          rescue
+            puts "Could not send email"
+          end
         end
         begin
           IO.write("reports/#{s}-#{date}.html",html)
