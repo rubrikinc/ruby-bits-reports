@@ -26,10 +26,10 @@ class ParseOptions
       options[:html] = g;
     end
     opts.on('--to', "Send to email") do |g|
-      options[:to] = g;
+      options[:toEmail] = g;
     end
     opts.on('--from', "Send from email") do |g|
-      options[:from] = g;
+      options[:fromEmail] = g;
     end
     opts.separator ""
     opts.separator "Common options:"

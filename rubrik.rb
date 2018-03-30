@@ -259,8 +259,8 @@ if Options.envision then
         if Options.to 
           require 'mail'
           mail = Mail.new do
-            from    "#{from}" 
-  	    to      "#{to}" 
+            from    fromEmail 
+  	    to      toEmail 
             subject 'Test report'
    	    html_part do
     	      content_type 'text/html; charset=UTF-8'
