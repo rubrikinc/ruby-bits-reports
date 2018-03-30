@@ -269,8 +269,8 @@ if Options.envision then
           end
           begin 
 	    mail.deliver
-          rescue
-            puts "Could not send email"
+          rescue Exception => e
+            puts "Could not send email" + e.message
           end
         end
         begin
