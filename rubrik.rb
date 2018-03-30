@@ -256,7 +256,7 @@ if Options.envision then
         end
         html << "</table>"
         html << "</html>"
-        if Options.email 
+        if Options.to 
           require 'mail'
           mail = Mail.new do
             from    from 
