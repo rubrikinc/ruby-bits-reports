@@ -270,7 +270,7 @@ if Options.envision then
 #    	        body html
 #  	      end
 #            end
-          puts "Sent report to #{toEmail}, from #{fromEmail}"
+          puts "Sent report to #{Options.toEmail}, from #{Options.fromEmail}"
           rescue Exception => e
             puts "Could not send email " + e.message
           end
