@@ -268,7 +268,6 @@ if Options.envision then
     	        body html
   	      end
             end
-          end
           rescue Exception => e
             puts "Could not send email" + e.message
           end
