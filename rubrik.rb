@@ -7,6 +7,8 @@ require 'csv'
 require 'uri'
 require 'restCall.rb'
 
+date = DateTime.now.strftime('%Y-%m-%d.%H-%M-%S')
+
 
 class DateTime
   def to_time
@@ -268,7 +270,11 @@ if Options.envision then
         mail.delivery_method :sendmail
 	mail.deliver
         else
-          IO.write("out.html",html)
+          begin
+            IO.write("reports/#{s}-#{date}.html",html)
+          rescue
+            puts "Couldn't write file reports/#{s}-#{date}.html"
+          end
         end
   # Dump to STDOUT
         else
