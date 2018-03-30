@@ -257,6 +257,7 @@ if Options.envision then
         html << "</table>"
         html << "</html>"
         if Options.toEmail
+          puts "Trying to send email to #{Options.fromEmail} from #{Options.toEmail}"
           begin 
             require 'mail'
             Mail.deliver do
@@ -290,5 +291,4 @@ end
 
 if Options.login then
    require 'getToken.rb'
-   token=get_token( s )
-end
+
