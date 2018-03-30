@@ -1,8 +1,6 @@
 #Rubrik
 .ideas
 .creds
-data/**
-!data/.gitkeep
 
 # Chef
 .chef
