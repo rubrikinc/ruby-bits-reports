@@ -260,15 +260,16 @@ if Options.envision then
           begin 
             puts "Trying to send email to #{Options.fromEmail} from #{Options.toEmail}"
             require 'mail'
-            Mail.deliver do
-              from    "#{Options.fromEmail}" 
-  	      to      "#{Options.toEmail}" 
-              subject 'Test report'
-   	      html_part do
-    	        content_type 'text/html; charset=UTF-8'
-    	        body html
-  	      end
-            end
+            pp Mail.defaults
+#            Mail.deliver do
+#              from    "#{Options.fromEmail}" 
+#  	      to      "#{Options.toEmail}" 
+#              subject 'Test report'
+#   	      html_part do
+#    	        content_type 'text/html; charset=UTF-8'
+#    	        body html
+#  	      end
+#            end
           puts "Sent report to #{toEmail}, from #{fromEmail}"
           rescue Exception => e
             puts "Could not send email " + e.message
