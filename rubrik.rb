@@ -257,8 +257,8 @@ if Options.envision then
         html << "</table>"
         html << "</html>"
         if Options.toEmail
-          puts "Trying to send email to #{Options.fromEmail} from #{Options.toEmail}"
           begin 
+            puts "Trying to send email to #{Options.fromEmail} from #{Options.toEmail}"
             require 'mail'
             Mail.deliver do
               from    "#{Options.fromEmail}" 
