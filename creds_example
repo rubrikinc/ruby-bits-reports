@@ -1,0 +1,12 @@
+{
+	"rubrik": {
+        	"servers": ["FQDN","FQDN"],
+		"username": "",
+        	"password": ""
+	},
+	"rubrik2": {
+        	"servers": ["FQDN","FQDN"],
+		"username": "",
+        	"password": ""
+	}
+}
