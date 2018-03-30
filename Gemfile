@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-gem 'rake'
-gem 'rspec'
 gem 'faraday'
 gem 'OptionParser'
+gem 'mail'
