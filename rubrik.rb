@@ -258,12 +258,11 @@ if Options.envision then
         html << "</html>"
         if Options.toEmail
           begin 
-            puts "Trying to send email to #{Options.fromEmail} from #{Options.toEmail}"
             require 'mail'
             Mail.deliver do
               from    "#{Options.fromEmail}" 
   	      to      "#{Options.toEmail}" 
-              subject 'Test report'
+              subject '[Rubrik] #{Time.now.strftime('%b %d, %Y')} Daily Report for #{s}'
    	      html_part do
     	        content_type 'text/html; charset=UTF-8'
     	        body html
