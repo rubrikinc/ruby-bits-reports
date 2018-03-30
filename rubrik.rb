@@ -263,14 +263,14 @@ if Options.envision then
               from    fromEmail 
   	      to      toEmail 
               subject 'Test report'
-   	      html_part do
-    	        content_type 'text/html; charset=UTF-8'
-    	        body html
+ #  	      html_part do
+ #   	        content_type 'text/html; charset=UTF-8'
+ #   	        body html
   	      end
             end
           puts "Sent report to #{toEmail}, from #{fromEmail}"
           rescue Exception => e
-            puts "Could not send email" + e.message
+            puts "Could not send email " + e.message
           end
         end
         begin
