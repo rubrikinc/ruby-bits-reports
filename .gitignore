@@ -1,6 +1,6 @@
 #Rubrik
+.ideas
 .creds
-data/*
 # Chef
 .chef
 infile*
