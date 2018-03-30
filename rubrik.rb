@@ -268,7 +268,7 @@ if Options.envision then
   	    end
           end
           begin 
-	    mail.deliver
+	    mail.deliver!
           rescue Exception => e
             puts "Could not send email" + e.message
           end
