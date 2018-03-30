@@ -259,8 +259,8 @@ if Options.envision then
         if Options.email 
           require 'mail'
           mail = Mail.new do
-            from    'reports@rubrik.com'
-  	    to      email 
+            from    from 
+  	    to      to 
             subject 'Test report'
    	    html_part do
     	      content_type 'text/html; charset=UTF-8'
@@ -276,13 +276,11 @@ if Options.envision then
             puts "Couldn't write file reports/#{s}-#{date}.html"
           end
         end
-  # Dump to STDOUT
-        else
-        dataset.each do |e|
-          puts e.to_csv
-        end
       end
-    File.write("data/"+s, dataset.to_json)
+    begin
+      File.write("data/"+s, dataset.to_json)
+    rescue
+      puts "Could not write data cache 'data/#{s}'"
     end 
   end
 end
