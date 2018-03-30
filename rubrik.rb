@@ -260,7 +260,7 @@ if Options.envision then
           begin 
             puts "Trying to send email to #{Options.fromEmail} from #{Options.toEmail}"
             require 'mail'
-            puts Mail.defaults
+            puts "Huh"
 #            Mail.deliver do
 #              from    "#{Options.fromEmail}" 
 #  	      to      "#{Options.toEmail}" 
