@@ -266,7 +266,7 @@ if Options.envision then
  #  	      html_part do
  #   	        content_type 'text/html; charset=UTF-8'
  #   	        body html
-  	      end
+ # 	      end
             end
           puts "Sent report to #{toEmail}, from #{fromEmail}"
           rescue Exception => e
