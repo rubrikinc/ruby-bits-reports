@@ -25,10 +25,10 @@ class ParseOptions
     opts.on('--html', "Format as HTML if possible") do |g|
       options[:html] = g;
     end
-    opts.on('--to', "Send to email") do |g|
+    opts.on('--to [string]', "Send to email") do |g|
       options[:toEmail] = g;
     end
-    opts.on('--from', "Send from email") do |g|
+    opts.on('--from [string]', "Send from email") do |g|
       options[:fromEmail] = g;
     end
     opts.separator ""
