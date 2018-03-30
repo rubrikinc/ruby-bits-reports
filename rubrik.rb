@@ -259,7 +259,7 @@ if Options.envision then
         if Options.to 
           require 'mail'
           mail = Mail.new do
-            from    "#{from]}" 
+            from    "#{from}" 
   	    to      "#{to}" 
             subject 'Test report'
    	    html_part do
