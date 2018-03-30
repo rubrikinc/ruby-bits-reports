@@ -262,7 +262,7 @@ if Options.envision then
             Mail.deliver do
               from    "#{Options.fromEmail}" 
   	      to      "#{Options.toEmail}" 
-              subject '[Rubrik] #{Time.now.strftime('%b %d, %Y')} Daily Report for #{s}'
+              subject "[Rubrik] #{Time.now.strftime('%b %d, %Y')} Daily Report for #{s}"
    	      html_part do
     	        content_type 'text/html; charset=UTF-8'
     	        body html
