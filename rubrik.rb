@@ -257,18 +257,18 @@ if Options.envision then
         html << "</table>"
         html << "</html>"
         if Options.to 
-          require 'mail'
-          mail = Mail.new do
-            from    fromEmail 
-  	    to      toEmail 
-            subject 'Test report'
-   	    html_part do
-    	      content_type 'text/html; charset=UTF-8'
-    	      body html
-  	    end
-          end
           begin 
-	    mail.deliver!
+            require 'mail'
+            Mail.deliver do
+              from    fromEmail 
+  	      to      toEmail 
+              subject 'Test report'
+   	      html_part do
+    	        content_type 'text/html; charset=UTF-8'
+    	        body html
+  	      end
+            end
+          end
           rescue Exception => e
             puts "Could not send email" + e.message
           end
