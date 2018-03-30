@@ -268,8 +268,7 @@ if Options.envision then
   	    end
           end
           begin 
-            mail.delivery_method :sendmail
-	    mail.deliver
+	    mail.deliver!
           rescue
             puts "Could not send email"
           end
