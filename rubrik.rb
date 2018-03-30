@@ -264,10 +264,10 @@ if Options.envision then
               from    "#{Options.fromEmail}" 
   	      to      "#{Options.toEmail}" 
               subject 'Test report'
-#   	      html_part do
-#    	        content_type 'text/html; charset=UTF-8'
-#    	        body html
-#  	      end
+   	      html_part do
+    	        content_type 'text/html; charset=UTF-8'
+    	        body html
+  	      end
             end
           puts "Sent report to #{Options.toEmail}, from #{Options.fromEmail}"
           rescue Exception => e
