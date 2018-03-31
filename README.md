@@ -10,7 +10,7 @@
 .creds - JSON formatted configuration (or resort to including credentials in command line execution)
 
         {
-        	"[friendlyname]": {
+        	"friendlyname": {
                 	"servers":["ip","ip",...],
                 	"username": "[username]",
                 	"password": "[password]"
@@ -27,7 +27,7 @@ Required options:
         --html                       Format as HTML if possible
         --to                         Send to email
         --from                       Send from email
-    -n, --node [Address]             Rubrik Cluster Address/FQDN or .creds  [friendlyname]
+    -n, --node [Address]             Rubrik Cluster Address/FQDN or .creds friendlyname
 
 Common options:
     -u, --username [username]        Rubrik Cluster Username
