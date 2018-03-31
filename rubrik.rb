@@ -92,7 +92,7 @@ if Options.envision then
             payload = { "limit": 1000, "sortBy": "StartTime", "sortOrder": "desc" , "cursor": "#{last}"}
           else 
             go="after_id=#{last}"
-            call = "/api/internal/report/#{r['id']}/table?limit=1000&sort_attr=QueuedTime&sort_order=desc&#{go}"
+            call = "/api/internal/report/#{r['id']}/table?limit=1000&sort_attr=StartTime&sort_order=desc&#{go}"
           end
           print "."
         else
@@ -101,7 +101,7 @@ if Options.envision then
             call = "/api/internal/report/#{r['id']}/table"
             payload = { "limit": 1000, "sortBy": "StartTime", "sortOrder": "desc" }
           else
-            call = "/api/internal/report/#{r['id']}/table?limit=1000&sort_attr=QueuedTime&sort_order=desc"
+            call = "/api/internal/report/#{r['id']}/table?limit=1000&sort_attr=StartTime&sort_order=desc"
             puts call
           end
           print "."
