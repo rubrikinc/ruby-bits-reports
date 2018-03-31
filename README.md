@@ -6,6 +6,7 @@
 * Rubrik Framework for issuing Daily Reports via email for Rubrik Clusters. 4.1/4.0 Compatible.
 
 # How to use:
+Usage below will result in a formatted message being emailed to --to from --from with a Rubrik Daily Report.
 ```
 .creds - JSON formatted configuration (or resort to including credentials in command line execution)
 
