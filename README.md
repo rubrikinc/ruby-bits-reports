@@ -4,6 +4,7 @@
 
 # Overview:
 * Rubrik Framework for issuing Daily Reports via email for Rubrik Clusters. 4.1/4.0 Compatible.
+
 This will produce a Netbackup style daily report, summarizing-
 * 24 Hour Failures
 * 7 Day Success Rates / Transfers
@@ -47,6 +48,7 @@ Common options:
 ```
 .\rubrik.rb --envision 'Protection Tasks Details' --html -n devops --to peterm@rubrik.com --from devopscluster@rubrik.com
 ```
+
 * Example Execution (save report only to ./reports/)
 ```
 .\rubrik.rb --envision 'Protection Tasks Details' --html -n devops --to peterm@rubrik.com --from devopscluster@rubrik.com
