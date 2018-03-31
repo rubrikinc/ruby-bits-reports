@@ -89,7 +89,7 @@ if Options.envision then
           page += 1 
           if vers.start_with?('4.1') then 
             call = "/api/internal/report/#{r['id']}/table"
-            payload = { "limit": 100, "sortBy": "StartTime", "sortOrder": "desc" , "cursor": "#{last}"}
+            payload = { "limit": 1000, "sortBy": "StartTime", "sortOrder": "desc" , "cursor": "#{last}"}
           else 
             go="after_id=#{last}"
             call = "/api/internal/report/#{r['id']}/table?limit=1000&sort_attr=QueuedTime&sort_order=desc&#{go}"
@@ -100,7 +100,7 @@ if Options.envision then
           page += 1 
           if vers.start_with?('4.1') then 
             call = "/api/internal/report/#{r['id']}/table"
-            payload = { "limit": 100, "sortBy": "StartTime", "sortOrder": "desc" }
+            payload = { "limit": 1000, "sortBy": "StartTime", "sortOrder": "desc" }
           else
             call = "/api/internal/report/#{r['id']}/table?limit=1000&sort_attr=QueuedTime&sort_order=desc"
           end
