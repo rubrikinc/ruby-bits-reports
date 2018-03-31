@@ -245,7 +245,7 @@ if Options.envision then
         summary.keys.each do |sum|
           summary[sum].keys.sort.each do |sla|
             puts "SUM - #{sum} : SLA - #{sla} : succ - #{summary[sum][sla]['Succeeded'].to_f} : fail - #{summary[sum][sla]['Failed'].to_f}"
-            ((((summary[sum][sla]['Succeeded'].to_f)/((summary[sum][sla]['Succeeded'].to_f)+(summary[sum][sla]['Failed'].to_f)))*100).to_i).to_s + "%"  do |calc| 
+            (((((summary[sum][sla]['Succeeded'].to_f)/((summary[sum][sla]['Succeeded'].to_f)+(summary[sum][sla]['Failed'].to_f)))*100).to_i).to_s + "%")  do |calc| 
               puts calc
             end
             html << "<tr>"
