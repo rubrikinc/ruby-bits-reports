@@ -130,7 +130,6 @@ if Options.envision then
         end
       end
       puts
-      puts "Updating data store"
 
 
       # save the data to pstore
@@ -279,12 +278,14 @@ if Options.envision then
           end
         end
         begin
+          puts "Writing report file #{File.dirname(__FILE__)}/reports/#{s}-#{date}.html"
           IO.write("#{File.dirname(__FILE__)}/reports/#{s}-#{date}.html",html)
         rescue
           puts "Couldn't write file #{File.dirname(__FILE__)}/reports/#{s}-#{date}.html"
         end
       end
       begin
+        puts "Updating data cache #{File.dirname(__FILE__)}/data/#{s}"
         File.write("#{File.dirname(__FILE__)}/data/"+s, dataset.to_json)
       rescue
         puts "Could not write data cache #{File.dirname(__FILE__)}/data/#{s}"
