@@ -247,6 +247,8 @@ if Options.envision then
             puts "SUM - #{sum} : SLA - #{sla} : succ - #{summary[sum][sla]['Succeeded'].to_f} : fail - #{summary[sum][sla]['Failed'].to_f}"
             if  summary[sum][sla]['Succeeded'].to_f 
               calc = ((((summary[sum][sla]['Succeeded'].to_f)/((summary[sum][sla]['Succeeded'].to_f)+(summary[sum][sla]['Failed'].to_f)))*100).to_i).to_s + "%"
+            else
+              calc = "0%"
             end
             html << "<tr>"
             html << "<td align=center>#{sum}</td>" 
