@@ -59,7 +59,7 @@ puts "Rubrik CDM Version #{vers}"
 if Options.envision then
   # Get the ID of the specified report
   require 'pathname'
-  pn = Pathname.new("#{File.dirname(__FILE__)}/data/"+s)
+  pn = Pathname.new("#{File.dirname(__FILE__)}/data/"+s+".cache")
   if pn.exist? 
     dataset = JSON.parse(File.read("#{File.dirname(__FILE__)}/data/"+s))
   else
@@ -285,10 +285,10 @@ if Options.envision then
         end
       end
       begin
-        puts "Updating data cache #{File.dirname(__FILE__)}/data/#{s}"
-        File.write("#{File.dirname(__FILE__)}/data/"+s, dataset.to_json)
+        puts "Updating data cache #{File.dirname(__FILE__)}/data/#{s}.cache"
+        File.write("#{File.dirname(__FILE__)}/data/"+s+".cache", dataset.to_json)
       rescue
-        puts "Could not write data cache #{File.dirname(__FILE__)}/data/#{s}"
+        puts "Could not write data cache #{File.dirname(__FILE__)}/data/#{s}.cache"
       end 
     end
   end
