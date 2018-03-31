@@ -19,17 +19,17 @@
 
 Usage: rubrik.rb [options]
 
-Specific options:
+Test options:
     -l, --login                      Perform no operations but return authentication token
 
-Report options:
+Required options:
     -r, --envision [string]          Return Requested Envision Report Table Data
         --html                       Format as HTML if possible
         --to                         Send to email
         --from                       Send from email
+    -n, --node [Address]             Rubrik Cluster Address/FQDN or .creds name
 
 Common options:
-    -n, --node [Address]             Rubrik Cluster Address/FQDN
     -u, --username [username]        Rubrik Cluster Username
     -p, --password [password]        Rubrik Cluster Password
     -h, --help                       Show this message
