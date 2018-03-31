@@ -204,8 +204,8 @@ if Options.envision then
         html << "</table>"
 
         # Set Table Output for 24 hour report 
-        data_req = ["ObjectName", "TaskType", "SlaDomain", "TaskStatus", "StartTime", "EndTime", "Duration", "14DaySuccessRate"]
-        html << "<table width=1000>"
+        data_req = ["Location","ObjectName", "TaskType", "SlaDomain", "TaskStatus", "StartTime", "EndTime", "Duration", "14DaySuccessRate"]
+        html << "<table width=1200>"
         html << "<tr border=1><td colspan=#{data_req.count} align=center border=1><b>Job Failures (Last 24 Hours)</b></td></tr>"
         data_req.each do |h|
           html << "<th>#{h}</th>"
@@ -225,7 +225,7 @@ if Options.envision then
             end
             html << "<td align=center>#{o}</td>"
           end
-          html << "<tr>"
+          html << "</tr>"
           rescue
             print "Tried to divide #{issues[zip['TaskType']][zip['ObjectName']]['Succeeded']} by #{(((issues[zip['TaskType']][zip['ObjectName']]['Succeeded']+issues[zip['TaskType']][zip['ObjectName']]['Failed'])).to_i)*100} and failed.\n" 
             pp(zip)
