@@ -245,15 +245,15 @@ if Options.envision then
         summary.keys.each do |sum|
           summary[sum].keys.sort.each do |sla|
             puts "SUM - #{sum} : SLA - #{sla} : succ - #{summary[sum][sla]['Succeeded'].to_f} : fail - #{summary[sum][sla]['Failed'].to_f}"
-            (((((summary[sum][sla]['Succeeded'].to_f)/((summary[sum][sla]['Succeeded'].to_f)+(summary[sum][sla]['Failed'].to_f)))*100).to_i).to_s + "%")  do |calc| 
-              puts calc
+            if  summary[sum][sla]['Succeeded'].to_f 
+              calc = ((((summary[sum][sla]['Succeeded'].to_f)/((summary[sum][sla]['Succeeded'].to_f)+(summary[sum][sla]['Failed'].to_f)))*100).to_i).to_s + "%"
             end
             html << "<tr>"
             html << "<td align=center>#{sum}</td>" 
             html << "<td align=center>#{sla}</td>" 
             html << "<td align=center>#{summary[sum][sla]['Succeeded']}</td>" 
             html << "<td align=center>#{summary[sum][sla]['Failed']}</td>" 
-            html << "<td align=center>#{((((summary[sum][sla]['Succeeded'].to_f)/((summary[sum][sla]['Succeeded'].to_f)+(summary[sum][sla]['Failed'].to_f)))*100).to_i).to_s + "%"}</td>" 
+            html << "<td align=center>#{calc}</td>" 
             html << "<td align=center>#{(((summary[sum][sla]['DataTransferred'].to_f)/1024/1024/1024).round(2)).to_s + "GB"}</td>" 
             html << "</tr>"
           end
