@@ -244,8 +244,7 @@ if Options.envision then
         end
         summary.keys.each do |sum|
           summary[sum].keys.sort.each do |sla|
-            puts "SUM - #{sum} : SLA - #{sla} : succ - #{summary[sum][sla]['Succeeded'].to_f} : fail - #{summary[sum][sla]['Failed'].to_f}"
-            if  summary[sum][sla]['Succeeded'].to_f 
+            if  summary[sum][sla]['Succeeded'].to_f > 0
               calc = ((((summary[sum][sla]['Succeeded'].to_f)/((summary[sum][sla]['Succeeded'].to_f)+(summary[sum][sla]['Failed'].to_f)))*100).to_i).to_s + "%"
             else
               calc = "0%"
