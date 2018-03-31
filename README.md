@@ -3,7 +3,7 @@
 
 
 # Overview:
-* Rubrik Framework for issuing commands in Ruby
+* Rubrik Framework for issuing Daily Reports via email for Rubrik Clusters. 4.1/4.0 Compatible.
 
 # How to use:
 ```
