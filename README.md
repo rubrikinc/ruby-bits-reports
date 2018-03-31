@@ -1,17 +1,17 @@
 #ruby-bits
 ===============
 
-Generic ruby bits to be organized and used in chef/puppet environments, and as a stand alone utility
 
 # Overview:
-* Rubrik Framework for issuing commands in Ruby
+* Rubrik Framework for issuing Daily Reports via email for Rubrik Clusters. 4.1/4.0 Compatible.
 
 # How to use:
+Usage below will result in a formatted message being emailed to --to from --from with a Rubrik Daily Report.
 ```
 .creds - JSON formatted configuration (or resort to including credentials in command line execution)
 
         {
-        	"rubrik": {
+        	"friendlyname": {
                 	"servers":["ip","ip",...],
                 	"username": "[username]",
                 	"password": "[password]"
@@ -20,17 +20,17 @@ Generic ruby bits to be organized and used in chef/puppet environments, and as a
 
 Usage: rubrik.rb [options]
 
-Specific options:
+Test options:
     -l, --login                      Perform no operations but return authentication token
 
-Report options:
+Required options:
     -r, --envision [string]          Return Requested Envision Report Table Data
         --html                       Format as HTML if possible
         --to                         Send to email
         --from                       Send from email
+    -n, --node [Address]             Rubrik Cluster Address/FQDN or .creds friendlyname
 
 Common options:
-    -n, --node [Address]             Rubrik Cluster Address/FQDN
     -u, --username [username]        Rubrik Cluster Username
     -p, --password [password]        Rubrik Cluster Password
     -h, --help                       Show this message
