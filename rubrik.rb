@@ -102,6 +102,7 @@ if Options.envision then
             payload = { "limit": 1000, "sortBy": "StartTime", "sortOrder": "desc" }
           else
             call = "/api/internal/report/#{r['id']}/table?limit=1000&sort_attr=QueuedTime&sort_order=desc"
+            puts call
           end
           print "."
         end
