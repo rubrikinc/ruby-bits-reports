@@ -9,7 +9,7 @@
 require 'json'
 def getCreds
 	begin
-		return JSON.parse(File.read('.creds'))
+		return JSON.parse(File.read("#{File.dirname(__FILE__)}/../.creds"))
 	rescue StandardError=>e
 		return e
 	end

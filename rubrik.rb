@@ -59,9 +59,9 @@ puts "Rubrik CDM Version #{vers}"
 if Options.envision then
   # Get the ID of the specified report
   require 'pathname'
-  pn = Pathname.new("data/"+s)
+  pn = Pathname.new("#{File.dirname(__FILE__)}/data/"+s)
   if pn.exist? 
-    dataset = JSON.parse(File.read('data/'+s))
+    dataset = JSON.parse(File.read("#{File.dirname(__FILE__)}/data/"+s))
   else
     dataset = Array.new
   end
@@ -82,29 +82,29 @@ if Options.envision then
       last = false
       done = false
       page=0
-      puts "Getting report data from Rubrik"
+      print "Getting report data from Rubrik "
       until done 
         # See if we're making a fresh call or paging call
         if last
           page += 1 
           if vers.start_with?('4.1') then 
             call = "/api/internal/report/#{r['id']}/table"
-            payload = { "limit": 100, "sortBy": "StartTime", "sortOrder": "desc" , "cursor": "#{last}"}
+            payload = { "limit": 1000, "sortBy": "StartTime", "sortOrder": "desc" , "cursor": "#{last}"}
           else 
             go="after_id=#{last}"
-            call = "/api/internal/report/#{r['id']}/table?limit=1000&sort_attr=QueuedTime&sort_order=desc&#{go}"
+            call = "/api/internal/report/#{r['id']}/table?limit=1000&sort_attr=StartTime&sort_order=desc&#{go}"
           end
-          puts "Page #{page}"
+          print "."
         else
-          print "First Call\n"
           page += 1 
           if vers.start_with?('4.1') then 
             call = "/api/internal/report/#{r['id']}/table"
-            payload = { "limit": 100, "sortBy": "StartTime", "sortOrder": "desc" }
+            payload = { "limit": 1000, "sortBy": "StartTime", "sortOrder": "desc" }
           else
-            call = "/api/internal/report/#{r['id']}/table?limit=1000&sort_attr=QueuedTime&sort_order=desc"
+            call = "/api/internal/report/#{r['id']}/table?limit=1000&sort_attr=StartTime&sort_order=desc"
+            puts call
           end
-          puts "Page #{page}"
+          print "."
         end
         if vers.start_with?('4.1') then 
           o=restCall(s ,call,payload,'post')
@@ -130,6 +130,7 @@ if Options.envision then
           done=1
         end
       end
+      puts
       puts "Updating data store"
 
 
@@ -244,46 +245,50 @@ if Options.envision then
         end
         summary.keys.each do |sum|
           summary[sum].keys.sort.each do |sla|
+            if  summary[sum][sla]['Succeeded'].to_f > 0
+              calc = ((((summary[sum][sla]['Succeeded'].to_f)/((summary[sum][sla]['Succeeded'].to_f)+(summary[sum][sla]['Failed'].to_f)))*100).to_i).to_s + "%"
+            else
+              calc = "0%"
+            end
             html << "<tr>"
             html << "<td align=center>#{sum}</td>" 
             html << "<td align=center>#{sla}</td>" 
             html << "<td align=center>#{summary[sum][sla]['Succeeded']}</td>" 
             html << "<td align=center>#{summary[sum][sla]['Failed']}</td>" 
-            html << "<td align=center>#{((((summary[sum][sla]['Succeeded'].to_f)/((summary[sum][sla]['Succeeded'].to_f)+(summary[sum][sla]['Failed'].to_f)))*100).to_i).to_s + "%"}</td>" 
+            html << "<td align=center>#{calc}</td>" 
             html << "<td align=center>#{(((summary[sum][sla]['DataTransferred'].to_f)/1024/1024/1024).round(2)).to_s + "GB"}</td>" 
             html << "</tr>"
           end
         end
         html << "</table>"
         html << "</html>"
-        if Options.email 
-          require 'mail'
-          mail = Mail.new do
-            from    from 
-  	    to      to 
-            subject 'Test report'
-   	    html_part do
-    	      content_type 'text/html; charset=UTF-8'
-    	      body html
-  	    end
-          end
+        if Options.toEmail
           begin 
-            mail.delivery_method :sendmail
-	    mail.deliver
-          rescue
-            puts "Could not send email"
+            require 'mail'
+            Mail.deliver do
+              from    "#{Options.fromEmail}" 
+  	      to      "#{Options.toEmail}" 
+              subject "[Rubrik] #{Time.now.strftime('%b %d, %Y')} Daily Report for #{s}"
+   	      html_part do
+    	        content_type 'text/html; charset=UTF-8'
+    	        body html
+  	      end
+            end
+          puts "Sent report to #{Options.toEmail}, from #{Options.fromEmail}"
+          rescue Exception => e
+            puts "Could not send email " + e.message
           end
         end
         begin
-          IO.write("reports/#{s}-#{date}.html",html)
+          IO.write("#{File.dirname(__FILE__)}/reports/#{s}-#{date}.html",html)
         rescue
-          puts "Couldn't write file reports/#{s}-#{date}.html"
+          puts "Couldn't write file #{File.dirname(__FILE__)}/reports/#{s}-#{date}.html"
         end
       end
       begin
-        File.write("data/"+s, dataset.to_json)
+        File.write("#{File.dirname(__FILE__)}/data/"+s, dataset.to_json)
       rescue
-        puts "Could not write data cache 'data/#{s}'"
+        puts "Could not write data cache #{File.dirname(__FILE__)}/data/#{s}"
       end 
     end
   end
@@ -291,5 +296,4 @@ end
 
 if Options.login then
    require 'getToken.rb'
-   token=get_token( s )
 end
