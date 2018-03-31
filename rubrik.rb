@@ -96,7 +96,6 @@ if Options.envision then
           end
           print "."
         else
-          print "Call\n"
           page += 1 
           if vers.start_with?('4.1') then 
             call = "/api/internal/report/#{r['id']}/table"
@@ -106,6 +105,7 @@ if Options.envision then
           end
           print "."
         end
+        puts
         if vers.start_with?('4.1') then 
           o=restCall(s ,call,payload,'post')
         else
