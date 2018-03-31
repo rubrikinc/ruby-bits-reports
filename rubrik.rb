@@ -82,7 +82,7 @@ if Options.envision then
       last = false
       done = false
       page=0
-      puts "Getting report data from Rubrik"
+      print "Getting report data from Rubrik "
       until done 
         # See if we're making a fresh call or paging call
         if last
@@ -105,7 +105,6 @@ if Options.envision then
           end
           print "."
         end
-        puts
         if vers.start_with?('4.1') then 
           o=restCall(s ,call,payload,'post')
         else
@@ -130,6 +129,7 @@ if Options.envision then
           done=1
         end
       end
+      puts
       puts "Updating data store"
 
 
