@@ -94,9 +94,9 @@ if Options.envision then
             go="after_id=#{last}"
             call = "/api/internal/report/#{r['id']}/table?limit=1000&sort_attr=QueuedTime&sort_order=desc&#{go}"
           end
-          puts "Page #{page}"
+          print "."
         else
-          print "First Call\n"
+          print "Call\n"
           page += 1 
           if vers.start_with?('4.1') then 
             call = "/api/internal/report/#{r['id']}/table"
@@ -104,7 +104,7 @@ if Options.envision then
           else
             call = "/api/internal/report/#{r['id']}/table?limit=1000&sort_attr=QueuedTime&sort_order=desc"
           end
-          puts "Page #{page}"
+          print "."
         end
         if vers.start_with?('4.1') then 
           o=restCall(s ,call,payload,'post')
