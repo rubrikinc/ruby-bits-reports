@@ -244,8 +244,7 @@ if Options.envision then
         end
         summary.keys.each do |sum|
           summary[sum].keys.sort.each do |sla|
-            puts summary[sum][sla]['Succeeded'].to_f
-            puts summary[sum][sla]['Failed'].to_f
+            puts "SUM - #{sum} : SLA - #{sla} : succ - #{summary[sum][sla]['Succeeded'].to_f} : fail - #{summary[sum][sla]['Failed'].to_f}"
             html << "<tr>"
             html << "<td align=center>#{sum}</td>" 
             html << "<td align=center>#{sla}</td>" 
