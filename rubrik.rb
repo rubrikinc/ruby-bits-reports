@@ -197,7 +197,7 @@ if Options.envision then
         # Begin HTML Formatting for Title
         html = ''
         html << "<html>"
-        html << "<table width=1000>"
+        html << "<table width=1200>"
         html << "<tr><td align=center><font size='+2'>Rubrik Daily Report</font></td></tr>"
         html << "<tr><td align=center>#{Time.now.strftime('%b %d, %Y')}</td></tr>"
         html << "<tr><td align=center><hr></td></tr>"
@@ -235,7 +235,7 @@ if Options.envision then
        
         # Summary Table
         data_req = ["Day", "SlaDomain", "Success", "Failure", "SuccessRate", "DataTransferred"]
-        html << "<table width=1000>"
+        html << "<table width=1200>"
         html << "<tr><td colspan=#{data_req.count} align=center><hr></td></tr>"
         html << "<tr><td colspan=#{data_req.count} align=center><b>7 Day Success Rates</b></td></tr>"
         data_req.each do |h|
