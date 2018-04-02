@@ -1,4 +1,4 @@
-#ruby-bits
+#ruby-bits-reports
 ===============
 
 
