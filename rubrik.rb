@@ -57,8 +57,10 @@ vers=restCall(s ,"/api/v1/cluster/me",'','get')["version"]
 puts "Rubrik CDM Version #{vers}" 
 
 if Options.envision then
+  hdr = Array.new
   # Get the ID of the specified report
   require 'pathname'
+  # OPEN CACHE HERE
   pn = Pathname.new("#{File.dirname(__FILE__)}/data/"+s+".cache")
   if pn.exist? 
     dataset = JSON.parse(File.read("#{File.dirname(__FILE__)}/data/"+s))
@@ -131,14 +133,30 @@ if Options.envision then
       end
       puts
 
-
-      # save the data to pstore
       dataset = dataset.uniq
       dataset = dataset.sort_by { |k| k[10] }.reverse
-      puts "Assembling Output"
- # Here
 
-      #do stuff with datasets
+      # Cleaning data Added 11SEP18
+
+      clean_cache ||= []
+
+      dataset.each.with_index do |line,idx|
+        zip = hdr.zip(line).to_h
+        if Time.parse(zip['StartTime']).to_i < ((Time.now.to_i)-(60*86400))
+          clean_cache << idx
+        end
+      end
+      begin 
+        dataset = dataset.reject.with_index {|e,i| clean_cache.include? i}
+      rescue
+        p "Cleanup Failed"
+      end
+
+      puts "#{dataset.count} items in cache"
+
+
+
+      puts "Assembling Output"
       if Options.outfile then 
         puts hdr.to_csv
         dataset.each do |e|
@@ -149,7 +167,6 @@ if Options.envision then
         summary = Hash.new
         dataset.each do |line|
           zip = hdr.zip(line).to_h
-          #next unless zip['TaskStatus'] == "Failed"
           next unless Time.parse(zip['StartTime']).to_i > ((Time.now.to_i)-(14*86400))
           unless issues.key?(zip['TaskType'])
             issues[zip['TaskType']] = Hash.new
@@ -286,7 +303,7 @@ if Options.envision then
       end
       begin
         puts "Updating data cache #{File.dirname(__FILE__)}/data/#{s}.cache"
-        File.write("#{File.dirname(__FILE__)}/data/"+s+".cache", dataset.to_json)
+        File.write("#{File.dirname(__FILE__)}/data/"+s+".cache", JSON.pretty_generate(dataset))
       rescue
         puts "Could not write data cache #{File.dirname(__FILE__)}/data/#{s}.cache"
       end 
