@@ -68,11 +68,7 @@ if Options.envision then
     dataset = Array.new
   end
   # VERS
-  if vers.start_with?('4.1') then 
-    h=restCall(s ,"/api/internal/report?name=#{Options.envision}",'','get')
-  else 
-    h=restCall(s ,"api/internal/report?search_value=#{Options.envision}",'','get')
-  end
+  h=restCall(s ,"/api/internal/report?name=#{Options.envision}",'','get')
   h['data'].each do |r|
     if r['name'] == Options.envision then
       # Get the headers for the report
@@ -89,29 +85,16 @@ if Options.envision then
         # See if we're making a fresh call or paging call
         if last
           page += 1 
-          if vers.start_with?('4.1') then 
-            call = "/api/internal/report/#{r['id']}/table"
-            payload = { "limit": 1000, "sortBy": "StartTime", "sortOrder": "desc" , "cursor": "#{last}"}
-          else 
-            go="after_id=#{last}"
-            call = "/api/internal/report/#{r['id']}/table?limit=1000&sort_attr=StartTime&sort_order=desc&#{go}"
-          end
+          call = "/api/internal/report/#{r['id']}/table"
+          payload = { "limit": 1000, "sortBy": "StartTime", "sortOrder": "desc" , "cursor": "#{last}"}
           print "."
         else
           page += 1 
-          if vers.start_with?('4.1') then 
-            call = "/api/internal/report/#{r['id']}/table"
-            payload = { "limit": 1000, "sortBy": "StartTime", "sortOrder": "desc" }
-          else
-            call = "/api/internal/report/#{r['id']}/table?limit=1000&sort_attr=StartTime&sort_order=desc"
-          end
+          call = "/api/internal/report/#{r['id']}/table"
+          payload = { "limit": 1000, "sortBy": "StartTime", "sortOrder": "desc" }
           print "."
         end
-        if vers.start_with?('4.1') then 
-          o=restCall(s ,call,payload,'post')
-        else
-          o=restCall(s ,call,'','get')
-        end
+        o=restCall(s ,call,payload,'post')
         hdr = o['columns']
         # Iterate results and see if it's in range, add it to data_set
         o['dataGrid'].each do |line|
@@ -122,11 +105,7 @@ if Options.envision then
           end
         end 
         # See if we need to grab more results
-        if vers.start_with?('4.1') then 
-          last = o['cursor']
-        else
-          last = o['lastId']
-        end
+        last = o['cursor']
         if o['hasMore'] == false
           done=1
         end
